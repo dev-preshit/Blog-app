@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Blog
+from .models import Category, Blog, About, SocialLinks
 
 # Register your models here.
 
@@ -14,5 +14,16 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'category_name')
 
 
+class aboutAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request):
+        count = About.objects.all().count()
+        
+        if count == 0:
+            return True
+        return False
+
+
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Blog,BlogAdmin)
+admin.site.register(About,aboutAdmin)
+admin.site.register(SocialLinks)

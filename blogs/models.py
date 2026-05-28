@@ -8,8 +8,6 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = ''
-        managed = True
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
@@ -36,3 +34,25 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+class About(models.Model):
+    about_title = models.CharField(max_length=50)
+    about_text = models.TextField(max_length=1000)
+    
+    class Meta:
+        db_table = ""
+        managed = True
+        verbose_name = 'About'
+        verbose_name_plural = 'Abouts'
+
+    def __str__(self):
+        return "About"
+
+
+class SocialLinks(models.Model):
+    platform = models.CharField(max_length=50)
+    link = models.URLField()
+
+
+    def __str__(self):
+        return self.platform
