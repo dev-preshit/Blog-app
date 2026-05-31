@@ -12,11 +12,12 @@ def register_page(request):
         form = registration_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('login_page')
         else:
-            print(form.error)
+            print(form.errors)
     else:
         form = registration_form()
+    print(form)
     context = {
         'form' : form,
     }
@@ -24,7 +25,7 @@ def register_page(request):
 
 def login_page(request):
     if request.method == "POST":
-        form = AuthenticationForm(request,request.POST)
+        form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']

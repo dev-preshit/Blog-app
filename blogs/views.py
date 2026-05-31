@@ -2,7 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import *
 from django.db.models import Q
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+# Create your views here. 
+
+
+@login_required(login_url='login_page')
 def post_by_category(request, category_id):
 
     category_name = get_object_or_404(Category,id = category_id).category_name
@@ -15,6 +20,7 @@ def post_by_category(request, category_id):
                }
     return render(request, 'category.html', context)
 
+@login_required(login_url='login_page')
 def category_Menu(request):
     categories = Category.objects.all()
     context = {
@@ -22,6 +28,7 @@ def category_Menu(request):
     }
     return render(request, 'category_menu.html', context)
 
+@login_required(login_url='login_page')
 def blogs(request,slug):
 
     single_blog = get_object_or_404(Blog, slug = slug, status = 'Published')
@@ -32,6 +39,7 @@ def blogs(request,slug):
     }
     return render(request,'blogs.html',context=context)
 
+@login_required(login_url='login_page')
 def search(request):
     keyword = request.GET.get('Keyword'," ")
     blogs = Blog.objects.filter(Q(title__icontains=keyword) |Q(short_description__icontains=keyword)|Q(blog_body__icontains=keyword),status = 'Published')

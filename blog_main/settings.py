@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'AutheticationApp',
     'crispy_forms',
     'crispy_bootstrap4',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
