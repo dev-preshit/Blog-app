@@ -69,6 +69,7 @@ TEMPLATES = [
                 'blogs.context_processors.get_categories',
                 'blogs.context_processors.get_About',
                 'blogs.context_processors.get_SocialLinks',
+                'blogs.context_processors.get_blogs',
             ],
         },
     },

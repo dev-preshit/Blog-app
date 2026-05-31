@@ -5,6 +5,10 @@ def get_categories(request):
     categories = Category.objects.all()
     return dict(categories=categories)
 
+def get_blogs(request):
+    blogs = Blog.objects.all()
+    return dict(blogs=blogs)
+
 def get_About(request):
     try:
         contact = About.objects.get()
