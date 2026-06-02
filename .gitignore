@@ -8,10 +8,6 @@ venv/
 env/
 .venv/
 
-
-*.sqlite3
-media/
-
 .env
 
 
