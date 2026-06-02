@@ -4,4 +4,5 @@ from . import views
 urlpatterns= [
     path("",views.category_Menu,name = "category"),
     path('<int:category_id>/',views.post_by_category,name = 'post_by_category' )
+    
 ]

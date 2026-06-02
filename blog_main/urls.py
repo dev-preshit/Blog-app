@@ -33,6 +33,8 @@ urlpatterns = [
     path('auth/',include('AutheticationApp.urls')),
 
     path('dashboard/',include('dashboard.urls')),
+
+    path('commnets/delete/<int:pk>/',BlogsView.delete_user_comment,name = "delete_user_comment"),
     
     path('<slug:slug>/', BlogsView.blogs, name = 'blogs'),
-] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)    

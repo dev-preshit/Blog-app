@@ -24,16 +24,24 @@
                     <p class="fs-5 mb-4">{{ single_blog.short_description }}</p>
                     <p class="fs-5 mb-4">{{ single_blog.blog_body }}</p>
                     
-                    {% comment %} <!-- Comments -->
+                    <!-- Comments -->
                     <h4>Comments ({{ comment_count }})</h4>
                     {% if comments %}
                         {% for comment in comments %}
                             <div class="card mt-1">
                                 <div class="card-body">
-                                    <p class="card-text mb-0">{{ comment }}</p>
-                                    <span>
+                                    <p class="card-text mb-0">{{ comment.comments }}</p>
+                                    <span class="row">
+                                        <div class="col-md-9">
                                         <small>By {{ comment.user }}</small>
                                         <small>| {{ comment.created_at | timesince }} ago</small>
+                                        </div>
+                                        {% if comment.user == user %}
+                                        <div class="d-flex justify-content-end col-md-3 ">
+                                            <a href="{%url 'delete_user_comment' comment.id %}"><i class="fa fa-trash text-danger"></i></a>
+                                        </div>
+                                        {% endif %}
+                                        <br>
                                     </span>
                                 </div>
                             </div>
@@ -44,7 +52,7 @@
                     <br>
                     <div class="form-group">
                         {% if user.is_authenticated %}
-                        <form action="" method="POST">
+                        <form action="{%url 'blogs' single_blog.slug %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <textarea name="comment" class="form-control" placeholder="Write your comment"></textarea>
@@ -55,7 +63,7 @@
                         {% else %}
                             <p>Please <span><a href="{% url 'login' %}">login</a></span> to write a comment!</p>
                         {% endif %}
-                    </div> {% endcomment %}
+                    </div>
 
                 </section>
             </article>

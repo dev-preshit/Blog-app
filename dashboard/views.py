@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
-from blogs.models import Blog, Category
+from blogs.models import Blog, Category, Comment
 from django.contrib.auth.decorators import login_required
 from .views  import Category
 from .forms import AddUserForm, BlogForm, CategoryForm, EditUserForm
@@ -159,3 +160,4 @@ def delete_users(request,pk):
     perticular_user = get_object_or_404(User, pk=pk)
     perticular_user.delete()
     return redirect('users')
+
